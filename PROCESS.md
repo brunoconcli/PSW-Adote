@@ -1,9 +1,9 @@
 ## Code list
 
-Create virtual environment
+Create virtual environment <br/>
 `python -m venv venv`
 
-Activate venv
+Activate venv <br/>
 `.\venv\Scripts\activate`
 
 Install django
@@ -14,3 +14,9 @@ Install pillow for images
 
 Open main folder 
 `django-admin startproject adote .`
+
+## Views
+Os arquivos de `views` contém a lógica do projeto
+
+
+
