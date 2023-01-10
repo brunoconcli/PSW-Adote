@@ -34,13 +34,13 @@
                                     <div class="col-md">
                                         <span>Senha</span>
                                         <input type="password" class="form-control" placeholder="*******" name="password"/>
-                                        <br>
+                                        
                                     </div>
 
                                     <div class="col-md">
                                         <span>Confirmar senha: </span>
                                         <input type="password" class="form-control" placeholder="*******" name="confirm_password"/>
-                                        <br>
+                                        
                                     </div>
                                 </div>
 
@@ -49,6 +49,14 @@
                                 <a href="" class="link-float">Já tenho uma conta</a>
                             </form>
                         </div>
+                        {% if messages %}
+                                
+                                {% for message in messages %}
+                                    <div class="alert {{message.tags}}">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
                     </div>
 
                     <div class="col-md-7">
