@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
+
 
 import tkinter
 from tkinter import messagebox
@@ -10,6 +13,9 @@ from tkinter import messagebox
 def register(request):
     root = tkinter.Tk()
     root.withdraw()
+
+    if request.user.is_authenticated:
+        return redirect('/disclose/new_pet')
     if request.method == "GET":
         return render(request, 'register.html')
     elif request.method == "POST":
@@ -41,4 +47,31 @@ def register(request):
             messages.add_message(request, constants.ERROR, 'Algo deu errado... Tente acessar a página novamente')
             return render(request, 'register.html')
 
-        return HttpResponse(f'{name}, {email}, {password}, {confirm_password}')
+
+def logar(request):
+    if request.user.is_authenticated:
+        return redirect('/disclose/new_pet')
+    if request.method == "GET":
+        return render(request, 'login.html')
+    elif request.method == "POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(username=email,
+                            password=password)
+
+        if len(email.strip()) == 0 or len(password.strip()) == 0:
+            messages.add_message(request, constants.WARNING, 'Todos os campos devem ser preenchidos corretamente')
+            return render(request, 'login.html')
+
+        if user is not None:
+            login(request, user)
+            return redirect('/disclose/new-pet')
+        else:
+            messages.add_message(request, constants.ERROR, "Usuário ou senha inválidos")
+            return render(request, 'login.html') 
+
+
+
+def signoff(request):
+    logout(request)
+    return redirect('/auth/login')
