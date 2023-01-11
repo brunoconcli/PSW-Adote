@@ -5,4 +5,5 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('users.urls')),
+    # path('disclose/', include('disclose.urls')), write that again later
 ]
