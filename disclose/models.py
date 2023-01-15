@@ -28,4 +28,4 @@ class Pet(models.Model):
     status = models.CharField(max_length=1, choices=choices_status)
 
     def __str__(self):
-        return self.pet
+        return self.petname
