@@ -9,7 +9,7 @@
 - 📦: dependencies / packages
 - 🗃️: data base / additions
 - 🧪: testes
-- 👀: a fazer / a ver
+- 👀: slight changes
 - 🐛: correção de bug
 - ✔️: validators
 - 📝: models / views
