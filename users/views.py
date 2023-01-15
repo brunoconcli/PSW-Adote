@@ -54,19 +54,21 @@ def logar(request):
     if request.method == "GET":
         return render(request, 'login.html')
     elif request.method == "POST":
-        email = request.POST.get('email')
+        username = request.POST.get('name')
         password = request.POST.get('password')
-        user = authenticate(username=email,
+        user = authenticate(username=username,
                             password=password)
 
-        if len(email.strip()) == 0 or len(password.strip()) == 0:
+        if len(username.strip()) == 0 or len(password.strip()) == 0:
             messages.add_message(request, constants.WARNING, 'Todos os campos devem ser preenchidos corretamente')
             return render(request, 'login.html')
 
         if user is not None:
+            print(user)
             login(request, user)
-            return redirect('/disclose/new-pet')
+            return redirect('/disclose/new_pet')
         else:
+            print(user)
             messages.add_message(request, constants.ERROR, "Usuário ou senha inválidos")
             return render(request, 'login.html') 
 

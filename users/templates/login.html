@@ -24,8 +24,8 @@
                         <p>Que bom ter você de volta.</p>
                         <hr>
                         <form action="{% url 'login' %}" method="POST">{% csrf_token %}
-                            <span>Eamil:</span>
-                            <input type="email" class="form-control" placeholder="seu-email@gmail.com" name="name">
+                            <span>Nome:</span>
+                            <input type="text" class="form-control" placeholder="Digite seu nome" name="name">
                             <br>
                            
                             <span>Senha:</span>
