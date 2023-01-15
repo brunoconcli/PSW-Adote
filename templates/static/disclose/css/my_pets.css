@@ -1,0 +1,32 @@
+.width80{
+    width: 80vw; 
+ }
+ 
+ .sidebar{
+    text-align: center;
+    padding: 20px;
+    color: white;
+    background-color: #391D34;
+    height: 100vh;
+}
+
+span {
+    border-radius: 10px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+img {
+    border-radius: 50%;
+}
+
+.tabela{
+     width: 100%;
+     margin-top: 20px;
+ }
+ 
+ .tabela-linha{
+     background-color: #e8e7e7;
+ }

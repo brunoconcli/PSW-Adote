@@ -44,3 +44,12 @@ def new_pet(request):
 
     pet.save()
     return HttpResponse("Seu pet foi cadastrado com sucesso!")
+
+@login_required
+def my_pets(request):
+    if request.method == "GET":
+        pets = Pet.objects.filter(user=request.user)
+        return render(request, "my_pets.html", {'pets': pets})
+
+def remove_pet(request, id):
+    return HttpResponse(id)
