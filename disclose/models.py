@@ -13,6 +13,11 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag
 
+class Animal(models.Model):
+    animal = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.animal
 
 class Pet(models.Model):
     choices_status = (('P', 'Para adoção'), 
@@ -26,13 +31,9 @@ class Pet(models.Model):
     phone = models.CharField(max_length=14)
     breed = models.ForeignKey(Breed, on_delete=models.DO_NOTHING)
     tags = models.ManyToManyField(Tag)
-    status = models.CharField(max_length=1, choices=choices_status)
+    status = models.CharField(max_length=1, choices=choices_status, default='P')
+    
 
     def __str__(self):
         return self.petname
 
-class Animal(models.Model):
-    animal = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.animal
