@@ -13,6 +13,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag
 
+
 class Pet(models.Model):
     choices_status = (('P', 'Para adoção'), 
                       ('A', 'Adotado'))
@@ -29,3 +30,9 @@ class Pet(models.Model):
 
     def __str__(self):
         return self.petname
+
+class Animal(models.Model):
+    animal = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.animal
