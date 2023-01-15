@@ -23,6 +23,7 @@ def new_pet(request):
         animal = request.POST.get('animal')
     
     #TODO: validate data (see if each field has been filled)
+    #TODO: create error messages to invalid info
 
     pet = Pet(
         user = request.user, 
