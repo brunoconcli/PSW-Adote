@@ -7,6 +7,7 @@
 - 🗂️: (rename / move) [arquivo / pasta]
 - 🔥: remoção de código / arquivo / pasta
 - 📦: dependencies / packages
+- 🗃️: data base / additions
 - 🧪: testes
 - 👀: a fazer / a ver
 - 🐛: correção de bug
@@ -15,6 +16,6 @@
 - 🧰: controller / middleware
 - 🧩: modulo / feature
 - 🧾: exports / imports
-- 📑: documentação
+- 📑: documentation
 - 🔨: html / css
-- 🪢: apenas código
+- 🪢: just code
