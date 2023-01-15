@@ -14,12 +14,18 @@ class Tag(models.Model):
         return self.tag
 
 class Pet(models.Model):
+    choices_status = (('P', 'Para adoção'), 
+                      ('A', 'Adotado'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    picture = models.ImageField(upload_to="pet_pictures")
     petname = models.CharField(max_length=50)
     description = models.TextField()
-    state = models.CharField(msa_length=50)
+    state = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     phone = models.CharField(max_length=14)
+    breed = models.ForeignKey(Breed, on_delete=models.DO_NOTHING)
+    tags = models.ManyToManyField(Tag)
+    status = models.CharField(max_length=1, choices=choices_status)
 
     def __str__(self):
         return self.pet
