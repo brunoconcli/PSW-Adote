@@ -6,13 +6,7 @@ from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 
-
-import tkinter
-from tkinter import messagebox
-
 def register(request):
-    root = tkinter.Tk()
-    root.withdraw()
 
     if request.user.is_authenticated:
         return redirect('/disclose/new_pet')
