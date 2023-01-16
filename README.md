@@ -12,10 +12,16 @@
 - 👀: slight changes
 - 🐛: correção de bug
 - ✔️: validators
-- 📝: models / views
+- 📝: models / views / urls
 - 🧰: controller / middleware
 - 🧩: modulo / feature
 - 🧾: exports / imports
 - 📑: documentation
 - 🔨: html / css
 - 🪢: just code
+
+## Problemas
+
+Quando a lista de My_pets estiver vazia, exibir mensagem 
+
+if a lista vazia não roda o for do html
