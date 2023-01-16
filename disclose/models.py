@@ -23,7 +23,7 @@ class Pet(models.Model):
     choices_status = (('P', 'Para adoção'), 
                       ('A', 'Adotado'))
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    picture = models.ImageField(upload_to="pet_pictures")
+    picture = models.ImageField(upload_to="pet_pictures", default='default-picture.jpg')
     petname = models.CharField(max_length=50)
     description = models.TextField()
     state = models.CharField(max_length=50)
