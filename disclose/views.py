@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import Tag, Breed, Animal, Pet
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.shortcuts import redirect
+from adopt.models import AdoptionRequest 
+from django.views.decorators.csrf import csrf_exempt
+
 
 from django.contrib.auth import authenticate
 
@@ -67,3 +70,32 @@ def remove_pet(request, id):
     pet.delete()
     messages.add_message(request, constants.SUCCESS, "Pet removido com successo.")
     return redirect('/disclose/my_pets')
+
+def show_pet(request, id):
+    if request.method == "GET":
+        pet = Pet.objects.get(id = id)
+        return render(request, 'show_pet.html', {'pet': pet})
+
+def show_adoption_request(request):
+    if request.method == "GET":
+        orders = AdoptionRequest.objects.filter(user=request.user).filter(status="AG")
+        return render(request, 'show_adoption_request.html', {'orders': orders})
+
+        #TODO do not allow someone to request the adoption of a pet of their own
+def dashboard(request):
+    if request.method == "GET":
+        return render(request, 'dashboard.html')
+
+@csrf_exempt
+def api_adoptions_per_breed(request):
+    breeds = Breed.objects.all()
+
+    qtt_adoptions = []
+    for breed in breeds:
+        adoptions = AdoptionRequest.objetcs.filter(pet__breed=breed).count()
+        qtt_adoptions.append(adoptions)
+
+    breeds = [breed.breed for breed in breeds]
+    data = {'qtt_adoptions': qtt_adoptions,
+            'labels': breeds}
+    return JsonResponse(data)
