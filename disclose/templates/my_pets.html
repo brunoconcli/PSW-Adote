@@ -32,7 +32,8 @@
                                     </div>
                                 {% endfor %}
                             {% endif %}
-                            <h3 class="font-vinho">Meus Pets</h3>
+                            <h3 class="font-vinho">Meus Pets | 
+                            <a href="{% url 'new_pet' %}" class="btn btn-primary">Adicionar novo Pet</a></h3>
                             <hr>
 
                              <table class="tabela" cellpadding="20">
@@ -43,30 +44,34 @@
                                     <th>Status</th>
                                     <th>Remover</th>
                                 </tr>
-                                    {% for pet in pets %}
-                                        <tr class="tabela-linha">
-                                            <td width="20%">
-                                                
-                                                <img width="50%" src="{{pet.picture.url}}">
-                                            </td>
-                                            <td>
-                                                {{pet.petname}}
-                                            </td>
-                                            <td>
-                                                {{pet.breed}}
-                                            </td>
-                                            <td>
-                                                {% if pet.status == "P" %}
-                                                    <span class="bedge text-bg-primary">Para adoção</span>
-                                                {% elif pet.status == "A" %}
-                                                    <span class="bedge text-bg-success">Adotado</span>
-                                                {% endif %}    
-                                            </td>
-                                            <td>
-                                                <a href="" class="btn btn-danger">REMOVER</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
+                                    
+                                        {% for pet in pets %}
+                                            <tr class="tabela-linha">
+                                                <td width="20%">
+                                                {% if pet.picture %}
+                                                    <img width="50%" src="{{pet.picture.url}}">
+                                                {% else %}
+                                                    <img width="50%" src="/media/pet_pictures/default-picture.jpg">
+                                                {% endif %}
+                                                </td>
+                                                <td>
+                                                    {{pet.petname}}
+                                                </td>
+                                                <td>
+                                                    {{pet.breed}}
+                                                </td>
+                                                <td>
+                                                    {% if pet.status == "P" %}
+                                                        <span class="bedge text-bg-primary">Para adoção</span>
+                                                    {% elif pet.status == "A" %}
+                                                        <span class="bedge text-bg-success">Adotado</span>
+                                                    {% endif %}    
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'remove_pet' pet.id %}" class="btn btn-danger">REMOVER</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
                             
                                 
                             </table>
