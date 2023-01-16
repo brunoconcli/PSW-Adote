@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Tag, Breed, Animal, Pet
+from django.contrib import messages
+from django.contrib.messages import constants
+from django.shortcuts import redirect
+
+from django.contrib.auth import authenticate
 
 @login_required
 def new_pet(request):
@@ -43,7 +48,8 @@ def new_pet(request):
         pet.tags.add(tag)
 
     pet.save()
-    return HttpResponse("Seu pet foi cadastrado com sucesso!")
+    messages.add_message(request, constants.SUCCESS, "Seu pet foi cadastrado com sucesso!")
+    return redirect('/disclose/my_pets')
 
 @login_required
 def my_pets(request):
@@ -52,4 +58,12 @@ def my_pets(request):
         return render(request, "my_pets.html", {'pets': pets})
 
 def remove_pet(request, id):
-    return HttpResponse(id)
+    pet = Pet.objects.get(id=id)
+    
+    if not pet.user == request.user:
+        messages.add_message(request, constants.ERROR, "O pet informado não pertence a conta atual.")
+        return redirect('/disclose/new_pet')
+
+    pet.delete()
+    messages.add_message(request, constants.SUCCESS, "Pet removido com successo.")
+    return redirect('/disclose/my_pets')
