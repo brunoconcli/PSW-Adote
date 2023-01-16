@@ -12,6 +12,7 @@
 - 👀: slight changes
 - 🐛: correção de bug
 - ✔️: validators
+- ⛲: automatic changes / cascade
 - 📝: models / views / urls
 - 🧰: controller / middleware
 - 🧩: modulo / feature
